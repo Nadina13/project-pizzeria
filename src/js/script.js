@@ -1,5 +1,7 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
+//const { active } = require("browser-sync");
+
 {
   'use strict';
 
@@ -89,6 +91,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.initAccordion();
       console.log('new Product:', thisProduct);
     }
     renderInMenu() {
@@ -105,6 +108,42 @@
 
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
+    }
+
+    initAccordion(event) {
+      const thisProduct = this;
+
+      /* find the clickable trigger (the element that should react to clicking) */
+      const trigger = document.querySelector(select.menuProduct.clickable);
+      console.log(trigger);
+
+      /* START: click event listener to trigger */
+      trigger.addEventListener('click', function () {
+        
+        /* prevent default action for event */
+        console.log('clicked');
+
+        /* toggle active class on element of thisProduct */
+        thisProduct.element.classList.add('active');
+
+        /* find all active products */
+        const activeProducts = thisProduct.element.querySelectorAll('.product.active');
+
+        /* START LOOP: for each active product */
+        for (let activeProduct of activeProducts) {
+
+          /* START: if the active product isn't the element of thisProduct */
+          if (activeProduct !== thisProduct.element) {
+
+            /* remove class active for the active product */
+            activeProduct.classList.remove('active');
+
+            /* END: if the active product isn't the element of thisProduct */
+          }
+          /* END LOOP: for each active product */
+        }
+        /* END: click event listener to trigger */
+      })
     }
   }
 
