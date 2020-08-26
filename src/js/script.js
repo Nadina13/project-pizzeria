@@ -109,8 +109,7 @@
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
-
-    initAccordion(event) {
+    initAccordion() {
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
@@ -118,16 +117,17 @@
       console.log(trigger);
 
       /* START: click event listener to trigger */
-      trigger.addEventListener('click', function () {
-        
+      trigger.addEventListener('click', function () { 
+      console.log('clicked');    
         /* prevent default action for event */
-        console.log('clicked');
+
 
         /* toggle active class on element of thisProduct */
-        thisProduct.element.classList.add('active');
+        thisProduct.element.classList.toggle('active');
 
         /* find all active products */
-        const activeProducts = thisProduct.element.querySelectorAll('.product.active');
+        const activeProducts = document.querySelectorAll('.product.active');
+        console.log(activeProducts);
 
         /* START LOOP: for each active product */
         for (let activeProduct of activeProducts) {
@@ -143,7 +143,7 @@
           /* END LOOP: for each active product */
         }
         /* END: click event listener to trigger */
-      })
+      }); 
     }
   }
 
