@@ -1,7 +1,5 @@
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
-//const { active } = require("browser-sync");
-
 {
   'use strict';
 
@@ -109,18 +107,19 @@
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
+
     initAccordion() {
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
-      const trigger = document.querySelector(select.menuProduct.clickable);
+      const trigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       console.log(trigger);
 
       /* START: click event listener to trigger */
-      trigger.addEventListener('click', function () { 
+      trigger.addEventListener('click', function (event) { 
       console.log('clicked');    
         /* prevent default action for event */
-
+        event.preventDefault();
 
         /* toggle active class on element of thisProduct */
         thisProduct.element.classList.toggle('active');
