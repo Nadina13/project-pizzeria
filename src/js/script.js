@@ -231,6 +231,21 @@
             /* END ELSE IF: if option is not selected and option is default */
           }
 
+          const allImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          console.log(allImages);
+
+          if (optionSelected){
+
+            for(let image of allImages){
+              image.classList.add('active');
+            }
+          } else {
+
+            for(let image of allImages) {
+              image.classList.remove('active');
+            }
+          }
+          
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
