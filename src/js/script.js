@@ -111,9 +111,9 @@
       menuContainer.appendChild(thisProduct.element);
     }
 
-    getElements(){
+    getElements() {
       const thisProduct = this;
-    
+
       thisProduct.trigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       console.log(thisProduct.trigger);
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
@@ -124,8 +124,10 @@
       console.log(thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       console.log(thisProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log(thisProduct.imageWrapper);
     }
-    
+
     initAccordion() {
       const thisProduct = this;
 
@@ -134,8 +136,8 @@
       console.log(trigger);
 
       /* START: click event listener to trigger */
-      trigger.addEventListener('click', function (event) { 
-      console.log('clicked');    
+      trigger.addEventListener('click', function (event) {
+        console.log('clicked');
         /* prevent default action for event */
         event.preventDefault();
 
@@ -160,25 +162,25 @@
           /* END LOOP: for each active product */
         }
         /* END: click event listener to trigger */
-      }); 
+      });
     }
 
-    initOrderForm(){
+    initOrderForm() {
       const thisProduct = this;
       console.log(thisProduct);
 
-      thisProduct.form.addEventListener('submit', function(event){
+      thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
-      
-      for(let input of thisProduct.formInputs){
-        input.addEventListener('change', function(){
+
+      for (let input of thisProduct.formInputs) {
+        input.addEventListener('change', function () {
           thisProduct.processOrder();
         });
       }
-      
-      thisProduct.cartButton.addEventListener('click', function(event){
+
+      thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
@@ -188,56 +190,57 @@
       const thisProduct = this;
       console.log(thisProduct);
 
-        /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
-        const formData = utils.serializeFormToObject(thisProduct.form);
-        console.log('formData:', formData);
+      /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log('formData:', formData);
 
-        /* set variable price to equal thisProduct.data.price */
-        let price = thisProduct.data.price;
-        console.log(price);
-      
-        /* START LOOP: for each paramId in thisProduct.data.params */
-          /* save the element in thisProduct.data.params with key paramId as const param */
-          for(let paramId in thisProduct.data.params) {
-            const param = thisProduct.data.params[paramId];
-            console.log(paramId);
-      
-          /* START LOOP: for each optionId in param.options */
-            /* save the element in param.options with key optionId as const option */
-            for(let optionId in param.options) {
-              const option = param.options[optionId];
-              console.log(option);
-              console.log(option.price);
+      /* set variable price to equal thisProduct.data.price */
+      let price = thisProduct.data.price;
+      console.log(price);
 
-            /* START IF: if option is selected and option is not default */
-            const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+      /* START LOOP: for each paramId in thisProduct.data.params */
+      /* save the element in thisProduct.data.params with key paramId as const param */
+      for (let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+        console.log(paramId);
 
-            if(optionSelected && !option.default){
+        /* START LOOP: for each optionId in param.options */
+        /* save the element in param.options with key optionId as const option */
+        for (let optionId in param.options) {
+          const option = param.options[optionId];
+          console.log(option);
+          console.log(option.price);
 
-              /* add price of option to variable price */
-               price = thisProduct.data.price + option.price;
-             console.log(price);
-              
+          /* START IF: if option is selected and option is not default */
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+
+          if (optionSelected && !option.default) {
+
+            /* add price of option to variable price */
+            price += option.price;
+            console.log(price);
+
             /* END IF: if option is selected and option is not default */
             /* START ELSE IF: if option is not selected and option is default */
-            } else if (!optionSelected && option.default) {
+          } else if (!optionSelected && option.default) {
 
-              /* deduct price of option from price */
-              price = thisProduct.data.price - option.price;
-              console.log(price);
-              
-          
+            /* deduct price of option from price */
+            price -= option.price;
+            console.log(price);
+
             /* END ELSE IF: if option is not selected and option is default */
-            }
-          /* END LOOP: for each optionId in param.options */
           }
-        /* END LOOP: for each paramId in thisProduct.data.params */
+
+          /* END LOOP: for each optionId in param.options */
         }
-        /* set the contents of thisProduct.priceElem to be the value of variable price */
-        thisProduct.priceElem.innerHTML = price;
+        /* END LOOP: for each paramId in thisProduct.data.params */
       }
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
+
+      thisProduct.priceElem.innerHTML = price;
+    }
 
   }
-  
+
   app.init();
 }
