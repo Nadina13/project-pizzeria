@@ -105,7 +105,7 @@
     }
 
     initActions() { 
-      const thisCart = this;
+      const thisCart = this; 
 
       thisCart.dom.toggleTrigger.addEventListener('click', function() {
         console.log('clicked');
@@ -118,6 +118,12 @@
       const thisCart = this;
 
       console.log('adding product', menuProduct);
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
@@ -367,9 +373,9 @@
     addToCart(){
       const thisProduct = this;
 
+      thisProduct.name = thisProduct.data.name;
+      thisProduct.amount = thisProduct.amountWidget.value;
       app.cart.add(thisProduct);
-      thisProduct.data.name = thisProduct.name;
-      thisProduct.amountWidget.value = thisProduct.amountWidget;
     }
   }
 
