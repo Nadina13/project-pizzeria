@@ -268,14 +268,33 @@
       console.log('thisApp.data:', thisApp.data);
 
       for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
     },
 
     initData: function () {
       const thisApp = this;
+      
+      thisApp.data = {};
+      
+      const url = settings.db.url + '/' + settings.db.product;
 
-      thisApp.data = dataSource;
+      fetch(url)
+      .then(function(rawRespose) {
+        return rawRespose.json();
+      })
+      .then(function(parsedResponse) {
+        console.log('paresedResponse', parsedResponse);
+
+        /* save parsedResponse as thisApp.data.products */
+        
+        /* execute initMenu method */
+        thisApp.initMenu();
+
+      }); 
+
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
+
     },
 
     init: function () {
@@ -288,7 +307,6 @@
       console.log('templates:', templates);
 
       thisApp.initData();
-      thisApp.initMenu();
       thisApp.initCart();
     },
 
