@@ -158,9 +158,9 @@
         products: [],
       };
 
-      /*for (let product of thisCart.products) {
-
-      }*/
+      for (let product of thisCart.products) {
+        payload.products.push(product.getData());
+      }
 
       const options = {
         method: 'POST',
@@ -305,11 +305,18 @@
       });
     }
 
-    /* getData() {
-       const thisCartProduct = this;
- 
-     }*/
+    getData() {
+      const thisCartProduct = this;
 
+      const productInfo = {
+        id: thisCartProduct.id,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        amount: thisCartProduct.amount,
+        params: thisCartProduct.params,
+      };
+      return productInfo;
+    }
   }
 
   class Product {
