@@ -10,7 +10,7 @@ export const select = {
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
-  },    
+  },
   all: {
     menuProducts: '#product-list > .product',
     menuProductsActive: '#product-list > .product.active',
@@ -67,7 +67,7 @@ export const select = {
     links: '.main-nav a',
   },
 };
-  
+
 export const classNames = {
   menuProduct: {
     wrapperActive: 'active',
@@ -87,7 +87,7 @@ export const classNames = {
     active: 'active',
   },
 };
-  
+
 export const settings = {
   hours: {
     open: 12,
@@ -119,7 +119,7 @@ export const settings = {
     repeatParam: 'repeat_ne=false',
   },
 };
-  
+
 export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
