@@ -3,21 +3,22 @@ import {select, templates} from '../settings.js';
 import amountWidget from './AmountWidget.js';
 
 class Booking {
-  constructor() {
+  constructor(element) {
     const thisBooking = this;
 
-    thisBooking.render();
+    thisBooking.render(element);
     thisBooking.initWidgets();
 
   }
 
-  render (     ) {
+  render(element) {
     const thisBooking = this;
 
     const generatedHTML = templates.bookingWidget();
 
     thisBooking.dom = {};
-    thisBooking.dom.wrapper =     ;
+    thisBooking.dom.wrapper = element;
+    thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
     /* zawartość wrappera zamieniać na kod HTML wygenerowany z szablonu */
 

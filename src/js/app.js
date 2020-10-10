@@ -26,7 +26,7 @@ const app = {
     thisApp.activatePage(pageMatchingHash);
 
     for (let link of thisApp.navLinks) {
-      link.addEvenetListener('click', function (event) {
+      link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
 
@@ -89,12 +89,12 @@ const app = {
 
     thisApp.productList = document.querySelector(select.containerOf.menu);
 
-    thisApp.productList.addEvenetListener('add-to-cart', function (event) {
+    thisApp.productList.addEventListener('add-to-cart', function (event) {
       app.cart.add(event.detail.product);
     });
   },
 
-  initData: function () {
+  initData: function (){
     const thisApp = this;
 
     thisApp.data = {};
@@ -124,7 +124,7 @@ const app = {
     const thisApp = this;
 
     const bookingElem = document.querySelector(select.containerOf.booking);
-    thisApp.booking = new Booking (bookingElem);
+    thisApp.booking = new Booking(bookingElem);
   },
 
   init: function () {
