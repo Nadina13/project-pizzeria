@@ -28,10 +28,10 @@ class BaseWidget {
       thisWidget.announce();
     }
     thisWidget.renderValue();
-    // thisWidget.correctValue = thisWidget.correctValue;
+   
   }
 
-  setValue() {
+  setValue(value) {
     const thisWidget = this;
 
     thisWidget.value = value;
