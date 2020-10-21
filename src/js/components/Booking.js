@@ -98,10 +98,16 @@ class Booking {
       thisBooking.booked[date][startHour] = [];
     }
 
-    thisBooking.booked[date][hour].push(table);
+    thisBooking.booked[date][startHour].push(table);
+
+    for(let index = 0; index < 3; index++) {
+      console.log('loop', index);
+    }
 
 
-  }
+
+
+  } 
 
   render(element) {
     const thisBooking = this;
