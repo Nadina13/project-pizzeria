@@ -80,6 +80,8 @@ class Booking {
     for(let item of eventsCurrent) {
       thisBooking.makeBooked(item.date, item.hour, item.duration,item.table);
     }
+
+    console.log(eventsRepeat);
     console.log('thisBooking.booked', thisBooking.booked);
   }
 
