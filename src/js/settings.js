@@ -50,20 +50,21 @@ export const select = {
     form: '.cart__order',
     formSubmit: '.cart__order [type="submit"]',
     phone: '[name="phone"]',
-    address: '[name="address"]',
+    address: '[name="address"]',   
   },
   cartProduct: {
     amountWidget: '.widget-amount',
     price: '.cart__product-price',
     edit: '[href="#edit"]',
-    remove: '[href="#remove"]',
+    remove: '[href="#remove"]',    
   },
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    bookingForm: '.booking-form',     
   },
-  nav: {
+  nav: {     
     links: '.main-nav a',
   },
 };
@@ -108,7 +109,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname =='localhost' ? ':3131' : ''),
     product: 'product',
     order: 'order',
     booking: 'booking',

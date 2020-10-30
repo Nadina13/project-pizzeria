@@ -9,18 +9,18 @@ class HourPicker extends BaseWidget {
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.input);
     thisWidget.dom.output = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.output);
+    thisWidget.value = thisWidget.dom.input.value;
 
     thisWidget.initPlugin();
-    thisWidget.value = thisWidget.dom.input;
   }
 
   initPlugin() {
     const thisWidget = this;
 
-    rangeSlider.create(thisWidget.dom.input);
-
-    thisWidget.dom.input.addEventListener('input', function () {
-      thisWidget.value = thisWidget.dom.input;
+    rangeSlider.create(thisWidget.dom.input, {
+      onSlide: function(value) {
+        thisWidget.value = value;
+      },
     });
   }
 
